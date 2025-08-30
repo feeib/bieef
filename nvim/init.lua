@@ -2,11 +2,17 @@ vim.opt.relativenumber = true
 vim.opt.wrap = false
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.swapfile = false
 
 vim.keymap.set({ 'n', 'v', 'o' }, 'k', 'k', { noremap = true })
 vim.keymap.set({ 'n', 'v', 'o' }, 'j', 'h', { noremap = true })
 vim.keymap.set({ 'n', 'v', 'o' }, 'l', 'j', { noremap = true })
 vim.keymap.set({ 'n', 'v', 'o' }, ';', 'l', { noremap = true })
+
+vim.keymap.set("n", "<A-l>", ":resize +2<CR>")
+vim.keymap.set("n", "<A-k>", ":resize -2<CR>")
+vim.keymap.set("n", "<A-;>", ":vertical resize -2<CR>")
+vim.keymap.set("n", "<A-j>", ":vertical resize +2<CR>")
 
 vim.g.mapleader = " "
 require("config.lazy")
@@ -57,8 +63,14 @@ require("neo-tree").setup({
 		mappings = {
 			[";"] = "close_node",
 			["j"] = "open",
-			["k"] = "next",
-			["l"] = "prev",
+			["k"] = "",
+			["l"] = "",
 		}
 	}
 })
+
+require("mason").setup()
+
+require("mason-lspconfig").setup {
+	ensure_installed = { "lua_ls", "pylsp", "omnisharp", "clangd" },
+}
