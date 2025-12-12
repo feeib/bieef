@@ -80,4 +80,3 @@ require("mason-lspconfig").setup {
 vim.lsp.config("clangd", {
 	-- root_dir = require("lspconfig.util").root_pattern("compile_commands.json", ".clangd"),
 })
-
